@@ -1,0 +1,37 @@
+// 변수 (Variables)
+
+// 전역 변수
+
+.container {
+  $size: 200px;
+  position: fixed;
+  top: $size;
+  .item{
+    $size: 100px;
+    width: $size;
+    height: $size;
+    transform: translateX($size);
+  }
+}
+
+
+// 연산
+div{
+  $size: 30px;
+  width: 20px + 20px;
+  height: 40px - 10px;
+  font-size: 10px * 2;
+  margin: $size / 2;
+  padding: 20px % 7;
+}
+
+span{
+  font-size: 10px;
+  line-height: 10px;
+  font-family: serif;
+  font: 10px / 10px serif;
+}
+
+div{
+  width: calc(100% - 200px);
+}
