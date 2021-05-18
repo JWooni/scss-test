@@ -1,6 +1,44 @@
-$color: royalblue;
+// 재활용
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-  h1 {
-    color: $color;
+  @include center;
+  .item{
+    @include center;
+  }
+}
+
+.box {
+  @include center;
+}
+
+@mixin box($size: 80px, $color:tomato) {
+  width: $size;
+  height: $size;
+  background-color: $color;
+}
+
+.container{
+  @include box(200px, red);
+  .item{
+    @include box($color:green);
+  }
+}
+
+.box{
+  @include box;
+}
+
+
+// 반복문
+
+@for $i from 1 through 10 {
+  .box:nth-child(#{$i}){
+    width: 100px * $i;
   }
 }
