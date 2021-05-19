@@ -2,17 +2,17 @@
 
 // 전역 변수
 
-.container {
-  $size: 200px;
-  position: fixed;
-  top: $size;
-  .item{
-    $size: 100px;
-    width: $size;
-    height: $size;
-    transform: translateX($size);
-  }
-}
+// .container {
+//   $size: 200px;
+//   position: fixed;
+//   top: $size;
+//   .item{
+//     $size: 100px;
+//     width: $size;
+//     height: $size;
+//     transform: translateX($size);
+//   }
+// }
 
 
 // 연산
@@ -34,4 +34,105 @@ span{
 
 div{
   width: calc(100% - 200px);
+}
+
+// 재활용
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  @include center;
+
+  .item {
+    @include center;
+  }
+}
+
+.box {
+  @include center;
+}
+
+@mixin box($size: 80px, $color:tomato) {
+  width: $size;
+  height: $size;
+  background-color: $color;
+}
+
+.container {
+  @include box(200px, red);
+
+  .item {
+    @include box($color:green);
+  }
+}
+
+.box {
+  @include box;
+}
+
+
+// 반복문
+
+@for $i from 1 through 10 {
+  .box:nth-child(#{$i}) {
+    width: 100px * $i;
+  }
+}
+
+
+// 함수
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@function ratio($size, $ratio) {
+  @return $size 8 $ratio
+}
+
+.box {
+  $width: 100px;
+  width: $width;
+  height: ratio($width, 1/2);
+  @include center;
+}
+
+
+// 내장 함수
+.box {
+  $color: royalblue;
+  width: 200px;
+  height: 100px;
+  margin: 20px;
+  border-radius: 10px;
+  background-color: $color;
+  // &.built-in {
+  //   background-color: mix($color, red);
+  // }
+  // &.built-in {
+  //   background-color: lighten($color, 10%);
+  // }
+  // &:hover {
+  //   background-color: darken($color, 10%);
+  // }
+  // &.built-in {
+  //   background-color: saturate($color, 40%);
+  // }
+  // &.built-in {
+  //   background-color: desaturate($color, 40%);
+  // }
+  // &.built-in {
+  //   background-color: grayscale($color);
+  // }
+  // &.built-in {
+  //   background-color: invert($color);
+  // }
+  // &.built-in {
+  //   background-color: rgba($color, 0.5);
+  // }
 }
